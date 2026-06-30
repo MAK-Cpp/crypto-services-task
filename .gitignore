@@ -11,3 +11,10 @@
 *.p12
 *.pfx
 *.jks
+
+# local .env file
+.env
+
+# python
+**/.venv
+**/__pycache__

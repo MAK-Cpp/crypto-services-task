@@ -1,5 +1,6 @@
 crypto:
   key-store:
-    path: ${KEYSTORE_PATH}
-    password: ${KEYSTORE_PASSWORD}
+    path: ${KEYSTORE_PATH:./keystore.p12}
     type: ${KEYSTORE_TYPE:PKCS12}
+    password: ${KEYSTORE_PASSWORD}
+    alias: ${KEYSTORE_ALIAS}
