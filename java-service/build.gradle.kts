@@ -18,6 +18,7 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     compileOnly(libs.jetbrains.annotations)
+    implementation(libs.bundles.bouncy.castle)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
