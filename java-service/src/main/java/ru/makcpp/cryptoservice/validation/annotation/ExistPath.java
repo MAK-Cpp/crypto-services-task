@@ -2,11 +2,12 @@ package ru.makcpp.cryptoservice.validation.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import ru.makcpp.cryptoservice.validation.ExistPathValidator;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import ru.makcpp.cryptoservice.validation.ExistPathValidator;
 
 @Target({ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

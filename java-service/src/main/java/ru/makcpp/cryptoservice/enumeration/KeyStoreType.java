@@ -1,10 +1,10 @@
 package ru.makcpp.cryptoservice.enumeration;
 
 import lombok.RequiredArgsConstructor;
+import ru.makcpp.cryptoservice.exception.InternalException;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
-import ru.makcpp.cryptoservice.exception.InternalException;
 
 @RequiredArgsConstructor
 public enum KeyStoreType {
