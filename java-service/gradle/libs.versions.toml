@@ -2,8 +2,12 @@
 junit = "6.0.0"
 spring-boot = "4.1.0"
 spring-dm = "1.1.7"
+lombok = "1.18.46"
+jetbrains-annotations = "26.1.0"
 
 [libraries]
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-annotations" }
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit" }
