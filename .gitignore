@@ -1,5 +1,13 @@
+# idea files
 .idea
 *.iml
 
+# output dirs
 **/.gradle
 **/build
+**/out
+
+# keystores
+*.p12
+*.pfx
+*.jks
