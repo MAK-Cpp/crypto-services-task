@@ -15,6 +15,7 @@ java {
 
 dependencies {
     implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.validation)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     compileOnly(libs.jetbrains.annotations)

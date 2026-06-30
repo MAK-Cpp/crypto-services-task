@@ -1,0 +1,5 @@
+crypto:
+  key-store:
+    path: ${KEYSTORE_PATH}
+    password: ${KEYSTORE_PASSWORD}
+    type: ${KEYSTORE_TYPE:PKCS12}

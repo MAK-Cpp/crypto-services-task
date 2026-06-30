@@ -13,6 +13,7 @@ jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version
 
 # spring dependencies
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
 
 # crypto dependencies
 bouncy-castle-provider = { group = "org.bouncycastle", name = "bcprov-jdk18on", version.ref = "bouncy-castle" }
