@@ -14,3 +14,12 @@
 - Контейнер сервлетов: embedded Apache Tomcat через Spring MVC
 - Криптографические провайдеры:
     1. Bouncy Castle - для электронной подписи стандарта PKCS#7 переданного документа
+
+## Как запустить сервис
+
+### IJ IDEA Ultimate
+
+1) Открыть `Configuration -> Edit... -> Spring Boot`
+2) `Modify options -> Working directory`, поставить путь до корня проекта
+3) `Modify options -> Environment variables`, указать путь к .env файлу или вручную заполнить нужные переменные среды
+

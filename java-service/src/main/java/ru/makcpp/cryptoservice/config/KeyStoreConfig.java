@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 import ru.makcpp.cryptoservice.enumeration.KeyStoreType;
+import ru.makcpp.cryptoservice.validation.annotation.ExistPath;
 import ru.makcpp.cryptoservice.validation.annotation.RegularFile;
 
 import java.nio.file.Path;
@@ -13,6 +14,7 @@ import java.nio.file.Path;
 @ConfigurationProperties(prefix = "crypto.key-store", ignoreUnknownFields = false)
 public record KeyStoreConfig(
         @NotNull
+        @ExistPath
         @RegularFile
         Path path,
 
@@ -20,6 +22,9 @@ public record KeyStoreConfig(
         String password,
 
         @NotNull
-        KeyStoreType type
+        KeyStoreType type,
+
+        @NotBlank
+        String alias
 ) {
 }

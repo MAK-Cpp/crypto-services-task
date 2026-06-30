@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
+import ru.makcpp.cryptoservice.exception.InternalException;
 
 @RequiredArgsConstructor
 public enum KeyStoreType {
@@ -12,7 +13,11 @@ public enum KeyStoreType {
 
     private final String type;
 
-    public KeyStore getKeyStore() throws KeyStoreException {
-        return KeyStore.getInstance(type);
+    public KeyStore getKeyStore() {
+        try {
+            return KeyStore.getInstance(type);
+        } catch (KeyStoreException e) {
+            throw new InternalException("Unexpected exception while getting key store", e);
+        }
     }
 }
