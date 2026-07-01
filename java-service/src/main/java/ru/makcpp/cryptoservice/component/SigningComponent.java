@@ -17,7 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.makcpp.cryptoservice.config.KeyStoreConfig;
 import ru.makcpp.cryptoservice.enumeration.SignType;
-import ru.makcpp.cryptoservice.exception.InternalException;
+import ru.makcpp.cryptoservice.exception.SigningException;
+import ru.makcpp.cryptoservice.exception.SigningMaterialException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +49,7 @@ public class SigningComponent {
             privateKey = (PrivateKey) keyStore.getKey(config.alias(), password);
             certificate = (X509Certificate) keyStore.getCertificate(config.alias());
         } catch (Exception e) {
-            throw new InternalException("Error while getting private key and certificate", e);
+            throw new SigningMaterialException("Unable to load signing private key and certificate", e);
         }
     }
 
@@ -58,7 +59,7 @@ public class SigningComponent {
                     .setProvider(BouncyCastleProvider.PROVIDER_NAME)
                     .build(privateKey);
         } catch (OperatorCreationException e) {
-            throw new RuntimeException(e);
+            throw new SigningException("Unable to create content signer", e);
         }
     }
 
@@ -72,20 +73,16 @@ public class SigningComponent {
                                     .build()
                     ).build(contentSigner, certificate)
             );
-        } catch (OperatorCreationException e) {
-            throw new RuntimeException(e);
-        } catch (CertificateEncodingException e) {
-            throw new RuntimeException(e);
+        } catch (OperatorCreationException | CertificateEncodingException e) {
+            throw new SigningException("Unable to add signer information", e);
         }
     }
 
     private void addCertificate(@NotNull CMSSignedDataGenerator generator) {
         try {
             generator.addCertificates(new JcaCertStore(List.of(certificate)));
-        } catch (CMSException e) {
-            throw new RuntimeException(e);
-        } catch (CertificateEncodingException e) {
-            throw new RuntimeException(e);
+        } catch (CMSException | CertificateEncodingException e) {
+            throw new SigningException("Unable to add signing certificate", e);
         }
     }
 
@@ -98,7 +95,7 @@ public class SigningComponent {
                 case DETACHED -> generator.generate(content, false);
             };
         } catch (CMSException e) {
-            throw new RuntimeException(e);
+            throw new SigningException("Unable to generate signed CMS data", e);
         }
     }
 
@@ -117,7 +114,7 @@ public class SigningComponent {
         try {
             return signedData.getEncoded();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new SigningException("Unable to encode signed CMS data", e);
         }
     }
 }
